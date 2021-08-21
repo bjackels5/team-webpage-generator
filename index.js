@@ -1,7 +1,8 @@
 // const { writeFile, copyFile } = require('./utils/generate-site.js');
 
 const inquirer = require("inquirer");
-// const generatePage = require("./src/page-template")
+const generateHTML = require("./src/generate-html")
+
 const validateInput = (str, message) => {
     if (str) {
         return true;
@@ -129,8 +130,11 @@ promptManager()
         return promptEmployee(managerData);
     })
     .then(teamData => {
-        console.log(JSON.stringify(teamData));
-        // return generatePage(teamData)
+        // console.log(JSON.stringify(teamData));
+        return generateHTML(teamData)
+    })
+    .then(generatedHTML => {
+        console.log(generatedHTML);
     })
     .catch(err => {
         console.log(err);
