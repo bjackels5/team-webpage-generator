@@ -1,11 +1,50 @@
-// {"title":"My Team","mgrName":"Brenda","email":"bjackels5@gmail.com","officeNum":"3","employees":[{"employeeType":"Engineer","title":"Sarah","empIdNum":"123","email":"sarah@home.com","github":"sarahjean"},{"employeeType":"Intern","title":"Isaac","empIdNum":"321","email":"isaac@home.com","school":"UF"}]}
+// {"title":"My Team","mgrName":"Brenda","email":"bjackels5@gmail.com","officeNum":"3",
+// "employees":[{"employeeType":"Engineer","title":"Sarah","empIdNum":"123","email":"sarah@home.com","github":"sarahjean"},{"employeeType":"Intern","title":"Isaac","empIdNum":"321","email":"isaac@home.com","school":"UF"}]}
 
+const generateEmployees = employees => {
+    return `
+    ${employees
+        .filter(({employeeType}) => employeeType === "Engineer")
+        .map(({ title, empIdNum, email, github }) => {
+            return `
+            <div class="card col-3 border-0 shadow pl-0 pr-0 mr-3 mb-3">
+                <div class="card-header pt-2 pl-3 text-white bg-primary">
+                    <p class="card-title">${title}</p>
+                    <p class="card-subtitle"><i class="fa fa-glasses mr-1"></i>Engineer</p>
+                </div>
+                <div class="list-group list-group-flush">
+                    <p class="list-group-item">ID: ${empIdNum}</p>
+                    <p class="list-group-item">Email: <a href="mailto:${email}">${email}</a></p>
+                    <p class="list-group-item">GitHub: <a href="https://github.com/${github}" target="_blank">${github}</a></p>
+                </div>
+            </div>
+            `
+        })
+        .join('')}
+    ${employees
+        .filter(({employeeType}) => employeeType === "Intern")
+        .map(({ title, empIdNum, email, school }) => {
+            return `
+            <div class="card col-3 border-0 shadow pl-0 pr-0 mr-3 mb-3">
+                <div class="card-header pt-2 pl-3 text-white bg-primary">
+                    <p class="card-title">${title}</p>
+                    <p class="card-subtitle"><i class="fa fa-user-graduate mr-1"></i>Intern</p>
+                </div>
+                <div class="list-group list-group-flush">
+                    <p class="list-group-item">ID: ${empIdNum}</p>
+                    <p class="list-group-item">Email: <a href="mailto:${email}">${email}</a></p>
+                    <p class="list-group-item">School: ${school}</p>
+                </div>
+            </div>
+            `
+        })
+        .join('')}
+        `
+}
 
 module.exports = teamData => {
     // destructure employees and manager info from teamData based on their property key names
     const { employees, ...manager } = teamData;
-
-    console.log(employees, manager);
 
      return `
 <!DOCTYPE html>
@@ -33,7 +72,7 @@ module.exports = teamData => {
     </header>
     <div class="container mt-3">
         <div class="row justify-content-center">
-            <div class="card col-3 employee border-0 shadow pl-0 pr-0 mr-3 mb-3">
+            <div class="card col-3 border-0 shadow pl-0 pr-0 mr-3 mb-3">
                 <div class="card-header pt-2 pl-3 text-white bg-primary">
                 <!-- [] { title: "Brenda's Team", mgrName: 'd', email: 'd', officeNum: 'd' } -->
                     <p class="card-title">${manager.mgrName}</p>
@@ -45,6 +84,7 @@ module.exports = teamData => {
                     <p class="list-group-item">Office Number: ${manager.officeNum}</p>
                 </div>
             </div>
+            ${generateEmployees(employees)}
         </div>
     </div>    
 </body>
