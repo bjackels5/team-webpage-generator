@@ -21,7 +21,7 @@ const managerQuestions = [
     },
     {
         type: 'input',
-        name: 'mgrName',
+        name: 'empName',
         message: 'What is your name? (Required)',
         validate: theInput => validateInput(theInput, "Your name is required.")
     },
@@ -57,7 +57,7 @@ const employeeQuestions = [
     },
     {
         type: 'input',
-        name: 'title',
+        name: 'empName',
         message: 'What is the employees name?',
         validate: theInput => validateInput(theInput, "The employee's name is required."),
         when(answers) {
@@ -66,7 +66,7 @@ const employeeQuestions = [
     },
     {
         type: 'input',
-        name: 'empIdNum',
+        name: 'idNum',
         message: "What is the employee's ID number? (Required)",
         validate: theInput => validateInput(theInput, "The employee's ID number is required."),
         when(answers) {
@@ -111,6 +111,7 @@ const promptEmployee = teamData => {
     if (!teamData.employees)
     {
         teamData.employees = [];
+        teamData.employeeType = "Manager";
     }
     console.log(`
 ==================
