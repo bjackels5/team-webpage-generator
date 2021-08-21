@@ -1,4 +1,4 @@
-// const { writeFile, copyFile } = require('./utils/generate-site.js');
+const writeToFile = require('./src/file-ops.js');
 
 const inquirer = require("inquirer");
 const generateHTML = require("./src/generate-html")
@@ -134,7 +134,7 @@ promptManager()
         return generateHTML(teamData)
     })
     .then(generatedHTML => {
-        console.log(generatedHTML);
+        writeToFile("./dist", "index.html", generatedHTML);
     })
     .catch(err => {
         console.log(err);
