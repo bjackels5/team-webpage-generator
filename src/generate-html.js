@@ -31,8 +31,23 @@ module.exports = teamData => {
             <p>${manager.title}</p>
         </div>
     </header>
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="card col-3 employee border-0 shadow pl-0 pr-0 mr-3 mb-3">
+                <div class="card-header pt-2 pl-3 text-white bg-primary">
+                <!-- [] { title: "Brenda's Team", mgrName: 'd', email: 'd', officeNum: 'd' } -->
+                    <p class="card-title">${manager.mgrName}</p>
+                    <p class="card-subtitle"><i class="fa fa-mug-hot mr-1"></i>Manager</p>
+                </div>
+                <div class="list-group list-group-flush">
+                    <p class="list-group-item">ID: ${manager.idNum}</p>
+                    <p class="list-group-item">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+                    <p class="list-group-item">Office Number: ${manager.officeNum}</p>
+                </div>
+            </div>
+        </div>
+    </div>    
 </body>
-
 </html>
 `
 // <body>

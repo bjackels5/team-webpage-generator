@@ -27,6 +27,12 @@ const managerQuestions = [
     },
     {
         type: 'input',
+        name: 'idNum',
+        message: 'What is your ID number? (Required)',
+        validate: theInput => validateInput(theInput, "Your ID number is required.")
+    },
+    {
+        type: 'input',
         name: 'email',
         message: 'What is your email address? (Required)',
         validate: theInput => validateInput(theInput, "Your email address is required.")
