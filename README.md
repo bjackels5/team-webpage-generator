@@ -9,9 +9,11 @@ This challenge for Module 10 of the Coding Bootcamp is to create a command line 
 
 * [What I Learned](#whatILearned)
 
-* [ProjectName Screenshot](#webImage)
+* [User Input Screenshot](#webImage)
 
-* [Sample Generated Webpage](#sampleOutput)
+* [Sample Generated HTML File](#sampleOutputHTML)
+
+* [Sample Generated Screenshot](#sampleOutputScreenshot)
 
 * [ProjectName Demo](#projectDemo)
 
@@ -83,18 +85,25 @@ address.
 ---
 
 <a id="webImage"></a>
-## Team Webpage Generator Screenshot
+## User Input Screenshot
 
-![Team Webpage Generator](./media/team-webpage-generator.png)
-
----
-
-<a id="sampleOutput"></a>
-
-<a href="./dist/index.html">Sample Team Webpage Output</a>
+![User Input Screenshot](./media/team-webpage-generator-user-input.png)
 
 ---
 
+<a id="sampleOutputHTML"></a>
+## Sample Generated HTML
+
+<a href="./dist/index.html">Sample Team Webpage HTML</a>
+
+---
+
+<a id="sampleOutputScreenshot"></a>
+## Sample Generated Webpage Screenshot
+
+![Generated Webpage Screenshot](./media/team-webpage-generator-results.png)
+
+---
 ## Team Webpage Generator Demo
 
 <a id="projectDemo"></a>
