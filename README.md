@@ -15,7 +15,7 @@ This challenge for Module 10 of the Coding Bootcamp is to create a command line 
 
 * [Sample Generated Screenshot](#sampleOutputScreenshot)
 
-* [ProjectName Demo](#projectDemo)
+* [Team Webpage Demo](#projectDemo)
 
 * [Contact Me](#contactMe)
 
@@ -108,8 +108,8 @@ address.
 
 <a id="projectDemo"></a>
 
-<a href="https://youtu.be/TRyEJ-cYpcg">
-   <img src="./media/ProjectName-demo.png">
+<a href="https://youtu.be/ZAlR4FociBc">
+   <img src="./media/team-webpage-generator-demo.png">
 </a>
 
 ---
