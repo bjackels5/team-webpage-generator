@@ -1,13 +1,19 @@
+const Employee = require('../lib/Employee.js');
+const Manager = require('../lib/Manager.js');
+const Engineer = require('../lib/Engineer.js');
+const Intern = require('../lib/Intern.js');
+
+
 const generateEmployee = (employee, faIcon, githubOrSchool) => {
     return `
             <div class="card col-md-3 col-sm-12 border-0 shadow px-0 mx-3 mb-3">
                 <div class="card-header pt-2 pl-3 text-white bg-primary">
-                    <p class="card-title">${employee.empName}</p>
-                    <p class="card-subtitle"><i class="fa ${faIcon} mr-1"></i>${employee.employeeType}</p>
+                    <p class="card-title">${employee.getName()}</p>
+                    <p class="card-subtitle"><i class="fa ${faIcon} mr-1"></i>${employee.getRole()}</p>
                 </div>
                 <div class="list-group list-group-flush">
-                    <p class="list-group-item">ID: ${employee.idNum}</p>
-                    <p class="list-group-item">Email: <a href="mailto:${employee.email}">${employee.email}</a></p>
+                    <p class="list-group-item">ID: ${employee.getId()}</p>
+                    <p class="list-group-item">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
                     <p class="list-group-item">${githubOrSchool}</p>
                 </div>
             </div>
@@ -16,28 +22,33 @@ const generateEmployee = (employee, faIcon, githubOrSchool) => {
 
 const generateEmployees = employees => {
     return `
+
     ${employees
-        .filter(({employeeType}) => employeeType === "Engineer")
+        .filter(employee => employee.getRole() === "Manager")
         .map(employee => {
-            return `${generateEmployee(employee, "fa-glasses",
-                                        'GitHub: <a href="https://github.com/' + employee.github + '" target="_blank">' + employee.github + '</a>')}
+            return `${generateEmployee(employee, "fa-mug-hot", "Office Number: " + employee.getOfficeNumber())}
             `
         })
         .join('')}
     ${employees
-        .filter(({employeeType}) => employeeType === "Intern")
+        .filter(employee => employee.getRole() === "Engineer")
         .map(employee => {
-            return `${generateEmployee(employee, "fa-user-graduate", "School: " + employee.school)}
+            return `${generateEmployee(employee, "fa-glasses",
+                                        'GitHub: <a href="https://github.com/' + employee.getGitHub() + '" target="_blank">' + employee.github + '</a>')}
+            `
+        })
+        .join('')}
+    ${employees
+        .filter(employee => employee.getRole() === "Intern")
+        .map(employee => {
+            return `${generateEmployee(employee, "fa-user-graduate", "School: " + employee.getSchool())}
             `
         })
         .join('')}
     `
 };
 
-module.exports = teamData => {
-    // destructure employees and manager info from teamData based on their property key names
-    const { employees, ...manager } = teamData;
-
+module.exports = employees => {
      return `
 <!DOCTYPE html>
 <html lang="en-US">
@@ -59,12 +70,12 @@ module.exports = teamData => {
 <body>
     <header>
         <div class="row justify-content-center text-white bg-danger p-4 h4">
-            <p>${manager.title}</p>
+            <p>${employees.filter(employee => employee.getRole() === "Manager")[0].getTeamTitle()}
+            </p>
         </div>
     </header>
     <div class="container mt-3">
         <div class="row justify-content-center">
-            ${generateEmployee(manager, "fa-mug-hot", "Office Number: " + manager.officeNum)}
             ${generateEmployees(employees)}
         </div>
     </div>    

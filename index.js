@@ -1,7 +1,11 @@
 const writeToFile = require('./src/file-ops.js');
 
 const inquirer = require("inquirer");
-const generateHTML = require("./src/generate-html")
+const generateHTML = require("./src/generate-html");
+const Manager = require('./lib/Manager.js');
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
+
 
 const validateInput = (str, message) => {
     if (str) {
@@ -102,17 +106,22 @@ const employeeQuestions = [
     },
 ];
 
-
 const promptManager = () => {
-    return inquirer.prompt(managerQuestions);
+    return inquirer.prompt(managerQuestions)
+        .then(managerData => {
+            const manager = new Manager(managerData.empName,
+                                        managerData.idNum,
+                                        managerData.email,
+                                        managerData.officeNum,
+                                        managerData.title);
+            return [ manager ];
+        })
+        .catch(err => {
+            console.log(err);
+        });
 };
 
-const promptEmployee = teamData => {
-    if (!teamData.employees)
-    {
-        teamData.employees = [];
-        teamData.employeeType = "Manager";
-    }
+const promptEmployee = employees => {
     console.log(`
 ==================
 Add a New Employee
@@ -122,23 +131,28 @@ Add a New Employee
     .then(employeeData => {
         if (employeeData.employeeType !== "I am done entering my team")
         {
-            teamData.employees.push(employeeData);
-            return promptEmployee(teamData);
+            if (employeeData.employeeType === "Engineer")
+            {
+                employee = new Engineer(employeeData.empName, employeeData.idNum, employeeData.email, employeeData.github);
+            } else {
+                employee = new Intern(employeeData.empName, employeeData.idNum, employeeData.email, employeeData.school);
+            }
+            employees.push(employee);
+            return promptEmployee(employees);
         }
         else
         {
-            return teamData;
+            return employees;
         }
     });
 };
 
 promptManager()
-    .then(managerData => {
-        return promptEmployee(managerData);
+    .then(employees => {
+        return promptEmployee(employees);
     })
-    .then(teamData => {
-        // console.log(JSON.stringify(teamData));
-        return generateHTML(teamData)
+    .then(employees => {
+        return generateHTML(employees)
     })
     .then(generatedHTML => {
         writeToFile("./dist", "index.html", generatedHTML);
