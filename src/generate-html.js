@@ -1,13 +1,10 @@
-const Employee = require('../lib/Employee.js');
-const Manager = require('../lib/Manager.js');
-const Engineer = require('../lib/Engineer.js');
-const Intern = require('../lib/Intern.js');
+// credit to classmate Kim Collazo for the idea of having each employee type display in a different color
 
 
-const generateEmployee = (employee, faIcon, githubOrSchool) => {
+const generateEmployee = (employee, faIcon, githubOrSchool, headerColor) => {
     return `
             <div class="card col-md-3 col-sm-12 border-0 shadow px-0 mx-3 mb-3">
-                <div class="card-header pt-2 pl-3 text-white bg-primary">
+                <div class="card-header pt-2 pl-3 text-white bg-${headerColor}">
                     <p class="card-title">${employee.getName()}</p>
                     <p class="card-subtitle"><i class="fa ${faIcon} mr-1"></i>${employee.getRole()}</p>
                 </div>
@@ -26,7 +23,7 @@ const generateEmployees = employees => {
     ${employees
         .filter(employee => employee.getRole() === "Manager")
         .map(employee => {
-            return `${generateEmployee(employee, "fa-mug-hot", "Office Number: " + employee.getOfficeNumber())}
+            return `${generateEmployee(employee, "fa-mug-hot", "Office Number: " + employee.getOfficeNumber(), "primary")}
             `
         })
         .join('')}
@@ -34,14 +31,15 @@ const generateEmployees = employees => {
         .filter(employee => employee.getRole() === "Engineer")
         .map(employee => {
             return `${generateEmployee(employee, "fa-glasses",
-                                        'GitHub: <a href="https://github.com/' + employee.getGitHub() + '" target="_blank">' + employee.github + '</a>')}
+                                        'GitHub: <a href="https://github.com/' + employee.getGitHub() + '" target="_blank">' + employee.github + '</a>',
+                                        "secondary")}
             `
         })
         .join('')}
     ${employees
         .filter(employee => employee.getRole() === "Intern")
         .map(employee => {
-            return `${generateEmployee(employee, "fa-user-graduate", "School: " + employee.getSchool())}
+            return `${generateEmployee(employee, "fa-user-graduate", "School: " + employee.getSchool(), "info")}
             `
         })
         .join('')}

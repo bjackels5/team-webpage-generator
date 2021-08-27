@@ -7,6 +7,8 @@ This challenge for Module 10 of the Coding Bootcamp is to create a command line 
 
 * [Technologies Used](#techUsed)
 
+* [Credits](#credits)
+
 * [What I Learned](#whatILearned)
 
 * [User Input Screenshot](#webImage)
@@ -50,13 +52,23 @@ address.
 
 <a id="techUsed"></a>
 ## Technologies Used
+
 * Jest
+* Bootstrap
 * Node
-* inquirer
+* Inquirer
 * JavaScript
 * HTML
 * Built-in file system functionality
+
 --- 
+
+<a id="credits"></a>
+## Credits
+
+Thank you Kim Collazo for the idea of using different colors for the different employee types.
+
+---
 
 <a id="whatILearned"></a>
 ## I learned how to...
