@@ -120,7 +120,7 @@ Thank you Kim Collazo for the idea of using different colors for the different e
 
 <a id="projectDemo"></a>
 
-<a href="https://youtu.be/ZAlR4FociBc">
+<a href="https://youtu.be/D_Ti1YEc5i4">
    <img src="./media/team-webpage-generator-demo.png">
 </a>
 
